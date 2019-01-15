@@ -32,6 +32,10 @@ const query = {
   createdAt: {
     start: moment('2019-01-14T18:52:17.585Z').startOf('day'),
     end: moment('2019-01-14T18:52:17.585Z').endOf('day'),
+  },
+  page: {
+    limit: 10,
+    offset: 1,
   }
 }
 
@@ -64,12 +68,22 @@ for(const q in query){
 
 app.use('/api/users', async (req, res, next) => {
   const firstName = 'gui'
-  const users = await User.findAndCountAll({ 
-    where,
-    limit: 0,
-    offset: 0,
-  })
-  res.json(users)
+  
+    const data = await User.findAndCountAll({ 
+      where,
+      limit: query.page.limit,
+      offset: query.page.offset - 1
+    })
+  
+
+  const respose = {
+    total: data.count,
+    data: data.rows,
+    page: query.page.offset,
+    limit: query.page.limit
+  }
+
+  res.json(respose)
 })
 
 app.listen(5000, () => console.log('runninng....'))
