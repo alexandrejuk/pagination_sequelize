@@ -1,0 +1,12 @@
+{
+  "name": "pagination-sequelize",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "moment": "^2.23.0",
+    "pg-search-sequelize": "^0.0.10",
+    "sequelize": "^4.42.0"
+  }
+}

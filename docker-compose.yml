@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  paginationDb:
+    image: postgres:9.6.5-alpine
+    ports:
+      - 5431:5432
+    volumes:
+      - paginationDb:/var/lib/postgresql/data
+volumes:
+  paginationDb:
